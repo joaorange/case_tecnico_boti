@@ -8,7 +8,7 @@
 * [Questão 4](#Questão-4)
 
 
-
+Para todos os programas em python, deixei um requirements.txt no repositório para mostrar as bibliotecas utilizadas.
 
 ## Questão 1
 
@@ -48,10 +48,22 @@ E, por fim, a variável OCCUPATION_TYPE, quando está vazia na base local, vem c
 
 Para a visualização do KS, criei um software simples no python para realizar de forma mais automatizada.
 
-Só é necessário, nele, preencher o separador do CSV analisado, decimal, se houver, coluna do evento (no caso, a coluna de marcação, se o cliente é bom ou mau), coluna de probabilidade (do score), valor do evento (no caso, o que desejamos, cliente ser bom, para o programa converter em "1"), e valor do não evento (no caso, o cliente ser mau).
+Só é necessário, nele, preencher o separador do CSV analisado; decimal, se houver; coluna do evento (no caso, a coluna de marcação, que diz se o cliente é bom ou mau); coluna de probabilidade (coluna do score); valor do evento (no caso, o que desejamos, cliente ser bom, para o programa converter em "1"); e valor do não evento (no caso, o cliente ser mau).
 
 ![imagem ks](https://github.com/user-attachments/assets/6ace7b2c-b2c1-4a94-a282-fb295b67bccc)
 
 Após isso, selecionamos o CSV e o gráfico é gerado. 
 
 ![figure ks](https://github.com/user-attachments/assets/31cb301e-a90f-4877-ab61-91c9e13a195f)
+
+## Questão 4
+
+Para responder a quarta questão, criei um programa que baixa diretamente do site do governo o CSV correspondente de 2023 e 2024. 
+
+Como a questão é explícita em citar que deseja apenas o produto de NCM = 33030010 no Estado de São Paulo, fiz esse filtro. Subi, então, a visualização para um dashboard no streamlit, permitindo que se possa ver pelo código do país exportador, pelas diferentes formas de se ver o preço por KG ( por exemplo, com adição do frete ou com seguro, ou sem ambos), e também com um filtro para ver em real ou dólar. Também há um botão para atualizar os dados, visto que utilizei dados em cache para não prejudicar o uso do dashboard.
+É válido dizer que, devido ao tamanho considerável dos CSV baixados, o carregamento inicial do dashboard pode demorar um pouco.
+
+O dashboard ficou da seguinte forma: 
+
+
+
