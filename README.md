@@ -20,3 +20,16 @@ A variável AMT_INCOME_TOTAL está com zeros a mais no GCP antes do ponto.
 A variável DAYS_BIRTH está sem o sinal negativo, "-", no GCP.
 
 ![img4](https://github.com/user-attachments/assets/c14bf737-897f-4edf-99e5-17638b16c2c9)
+
+A variável FLAG_WORK_PHONE está como decimal na GCP...
+
+![img5](https://github.com/user-attachments/assets/3cea9013-6027-43ce-8923-b65d69dd9384)
+
+...e ocorrem algumas inconsistências onde ela vem vazia.
+
+![img6](https://github.com/user-attachments/assets/1c306216-8162-43de-b619-32ae120139a7)
+
+E, por fim, a variável OCCUPATION_TYPE, quando está vazia na base local, vem como "Without Occupation" no GCP.
+
+![img7](https://github.com/user-attachments/assets/06aceecb-f7c0-4804-ae1a-241f1b71ace0)
+
