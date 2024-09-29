@@ -2,8 +2,6 @@
 
 # Índice 
 
-* [Título e Imagem de capa](#Título-e-Imagem-de-capa)
-* [Badges](#badges)
 * [Questão 1](#Questão-1)
 * [Questão 2](#Questão-2)
 * [Questão 3](#Questão-3)
@@ -12,7 +10,7 @@
 
 
 
-## QUESTÃO 1
+## Questão 1
 
 Para comparar as bases, subi os CSV no Dbeaver (onde todas as colunas foram como texto, por meio do "script_create", a fim de não perder informações com transformações numéricas). 
 Fiz uma query ("script_validate") para contar quantas linhas, por cada coluna, estavam distintas de uma tabela para outra, realizando o join das tabelas pela coluna ID. Como o join retornou o valor exato da quantidade de linhas do CSV, abandonei hipótese de que essa coluna também poderia estar divergente. O resultado pode ser visto no print abaixo:
@@ -45,3 +43,15 @@ E, por fim, a variável OCCUPATION_TYPE, quando está vazia na base local, vem c
 
 ![img7](https://github.com/user-attachments/assets/06aceecb-f7c0-4804-ae1a-241f1b71ace0)
 
+
+## Questão 3
+
+Para a visualização do KS, criei um software simples no python para realizar de forma mais automatizada.
+
+Só é necessário, nele, preencher o separador do CSV analisado, decimal, se houver, coluna do evento (no caso, a coluna de marcação, se o cliente é bom ou mau), coluna de probabilidade (do score), valor do evento (no caso, o que desejamos, cliente ser bom, para o programa converter em "1"), e valor do não evento (no caso, o cliente ser mau).
+
+![imagem ks](https://github.com/user-attachments/assets/6ace7b2c-b2c1-4a94-a282-fb295b67bccc)
+
+Após isso, selecionamos o CSV e o gráfico é gerado. 
+
+![figure ks](https://github.com/user-attachments/assets/31cb301e-a90f-4877-ab61-91c9e13a195f)
