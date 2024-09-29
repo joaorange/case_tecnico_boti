@@ -7,6 +7,7 @@
 * [Questão 3](#Questão-3)
 * [Questão 4](#Questão-4)
 
+Para os códigos em SQL, usei o SQL LITE por meio da plataforma DBeaver.
 
 Para todos os programas em python, deixei um requirements.txt no repositório para mostrar as bibliotecas utilizadas.
 
@@ -43,6 +44,13 @@ E, por fim, a variável OCCUPATION_TYPE, quando está vazia na base local, vem c
 
 ![img7](https://github.com/user-attachments/assets/06aceecb-f7c0-4804-ae1a-241f1b71ace0)
 
+## Questão 2
+
+Para resolver a segunda questão, visto que o sql requer a data em um formato específico, ao carregar os CSV, fiz um script simples, posteriormente, para tratar as colunas de data. 
+
+![update](https://github.com/user-attachments/assets/b883fb7e-e024-4a82-ae0a-fd0216cae6a1)
+
+O script que responde a questão está com o nome "script_engineering" na pasta correspondente.
 
 ## Questão 3
 
