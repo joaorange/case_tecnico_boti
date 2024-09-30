@@ -50,6 +50,11 @@ E, por fim, a variável OCCUPATION_TYPE, quando está vazia na base local, vem c
 
 ![img7](https://github.com/user-attachments/assets/06aceecb-f7c0-4804-ae1a-241f1b71ace0)
 
+Também fiz um código python ('validate.py') que gera um txt com as mesmas informações explanadas acima. O txt ficou da seguinte forma: 
+
+![txt report](https://github.com/user-attachments/assets/fa5891e3-ec91-4b55-ba38-9fe414a83eb2)
+
+
 ## Questão 2
 
 Para resolver a segunda questão, visto que o sql requer a data em um formato específico, ao carregar os CSV, fiz um script simples, posteriormente, para tratar as colunas de data. 
