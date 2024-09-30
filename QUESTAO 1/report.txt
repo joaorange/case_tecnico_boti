@@ -1,0 +1,61 @@
+### Report ###
+Merge Counts:
+both: 437459
+local_only: 4051
+gcp_only: 0
+
+### Duplicados GCP ###
+False    434459
+True       3000
+dtype: int64
+
+### Duplicados Local ###
+False    438510
+dtype: int64
+
+### Diferenças ###
+Coluna: CODE_GENDER, Quantidade de Diferenças: 437459
+Exemplos de Diferenças:
+      ID CODE_GENDER_LOCAL CODE_GENDER_GCP
+ 5008804                 M            Male
+ 5008804                 M            Male
+ 5008805                 M            Male
+ 5008805                 M            Male
+ 5008806                 M            Male
+
+Coluna: AMT_INCOME_TOTAL, Quantidade de Diferenças: 437459
+Exemplos de Diferenças:
+      ID AMT_INCOME_TOTAL_LOCAL AMT_INCOME_TOTAL_GCP
+ 5008804               427500.0           42750000.0
+ 5008804               427500.0           42750000.0
+ 5008805               427500.0           42750000.0
+ 5008805               427500.0           42750000.0
+ 5008806               112500.0           11250000.0
+
+Coluna: DAYS_BIRTH, Quantidade de Diferenças: 437459
+Exemplos de Diferenças:
+      ID DAYS_BIRTH_LOCAL DAYS_BIRTH_GCP
+ 5008804           -12005          12005
+ 5008804           -12005          12005
+ 5008805           -12005          12005
+ 5008805           -12005          12005
+ 5008806           -21474          21474
+
+Coluna: FLAG_WORK_PHONE, Quantidade de Diferenças: 437459
+Exemplos de Diferenças:
+      ID FLAG_WORK_PHONE_LOCAL FLAG_WORK_PHONE_GCP
+ 5008804                     1                 NaN
+ 5008804                     1                 NaN
+ 5008805                     1                 NaN
+ 5008805                     1                 NaN
+ 5008806                     0                 NaN
+
+Coluna: OCCUPATION_TYPE, Quantidade de Diferenças: 133118
+Exemplos de Diferenças:
+      ID OCCUPATION_TYPE_LOCAL OCCUPATION_TYPE_GCP
+ 5008804                   NaN  Without Occupation
+ 5008804                   NaN  Without Occupation
+ 5008805                   NaN  Without Occupation
+ 5008805                   NaN  Without Occupation
+ 5008812                   NaN  Without Occupation
+

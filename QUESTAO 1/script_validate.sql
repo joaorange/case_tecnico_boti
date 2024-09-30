@@ -1,3 +1,41 @@
+WITH Duplicados_Locais AS (
+    SELECT ID
+    FROM application_record_local
+    GROUP BY ID
+    HAVING COUNT(*) > 1
+),
+Duplicados_GCP AS (
+    SELECT ID
+    FROM application_record_gcp
+    GROUP BY ID
+    HAVING COUNT(*) > 1
+),
+Registros_Em_Ambas AS (
+    SELECT l.ID
+    FROM application_record_local l
+    JOIN application_record_gcp g ON l.ID = g.ID
+),
+Registros_Apenas_Locais AS (
+    SELECT ID
+    FROM application_record_local
+    WHERE ID NOT IN (SELECT ID FROM application_record_gcp)
+),
+Registros_Apenas_GCP AS (
+    SELECT ID
+    FROM application_record_gcp
+    WHERE ID NOT IN (SELECT ID FROM application_record_local)
+)
+
+SELECT 
+    (SELECT COUNT(*) FROM Duplicados_Locais) AS Duplicados_Locais,
+    (SELECT COUNT(*) FROM Duplicados_GCP) AS Duplicados_GCP,
+    (SELECT COUNT(*) FROM Registros_Em_Ambas) AS Ambos,
+    (SELECT COUNT(*) FROM Registros_Apenas_Locais) AS Apenas_Locais,
+    (SELECT COUNT(*) FROM Registros_Apenas_GCP) AS Apenas_GCP;
+
+
+
+-- Comparação das colunas
 SELECT 
     SUM(CASE WHEN l.CODE_GENDER = g.CODE_GENDER THEN 1 ELSE 0 END) AS CODE_GENDER_Igual,
     SUM(CASE WHEN l.CODE_GENDER != g.CODE_GENDER THEN 1 ELSE 0 END) AS CODE_GENDER_Diferenca,
@@ -33,5 +71,7 @@ SELECT
     SUM(CASE WHEN l.OCCUPATION_TYPE != g.OCCUPATION_TYPE THEN 1 ELSE 0 END) AS OCCUPATION_TYPE_Diferenca,
     SUM(CASE WHEN l.CNT_FAM_MEMBERS = g.CNT_FAM_MEMBERS THEN 1 ELSE 0 END) AS CNT_FAM_MEMBERS_Igual,
     SUM(CASE WHEN l.CNT_FAM_MEMBERS != g.CNT_FAM_MEMBERS THEN 1 ELSE 0 END) AS CNT_FAM_MEMBERS_Diferenca
-FROM application_record_local l
-JOIN application_record_gcp g ON l.ID = g.ID;
+FROM 
+    application_record_local l
+JOIN 
+    application_record_gcp g ON l.ID = g.ID;
