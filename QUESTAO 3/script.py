@@ -4,18 +4,17 @@ import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import filedialog, messagebox
 
+# Lendo o CSV
+def read_csv(caminho, sep, decimal='.'):
+    return pd.read_csv(caminho, sep=sep, decimal=decimal)
 
-def read_csv(caminho, sep, decimal = '.'):
-    df = pd.read_csv(caminho, sep = sep, decimal = decimal)
-    return df
-
-
+# Transformando a coluna "target" em valores de "1" e "0"
 def event_nonevent(df, coluna_evento, evento, nao_evento):
     df = df.copy()
     df[coluna_evento] = df[coluna_evento].apply(lambda x: 1 if x == evento else (0 if x == nao_evento else x))
     return df
 
-
+# Gráfico para visualização da curva de KS
 def grafico_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento):
     score_0 = df[df[coluna_evento] == 0][coluna_probabilidade]
     score_1 = df[df[coluna_evento] == 1][coluna_probabilidade]
@@ -51,55 +50,63 @@ def grafico_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento):
     plt.grid()
     plt.show()
 
-
-def processar_csv():
+# Processando o CSV com base nas entradas do tkinter
+def processar_csv(sep_entry, decimal_entry, coluna_evento_entry, coluna_probabilidade_entry, evento_entry, nao_evento_entry):
     caminho_csv = filedialog.askopenfilename(title="Selecione o arquivo CSV", filetypes=[("CSV files", "*.csv")])
     if not caminho_csv:
         return
 
     sep = sep_entry.get()
-    decimal = decimal_entry.get()
+    decimal = decimal_entry.get() if decimal_entry.get() else '.'
     coluna_evento = coluna_evento_entry.get()
     coluna_probabilidade = coluna_probabilidade_entry.get()
     evento = evento_entry.get()
     nao_evento = nao_evento_entry.get()
 
     try:
-        df = read_csv(caminho_csv, sep)
+        df = read_csv(caminho_csv, sep, decimal)
         df = event_nonevent(df, coluna_evento, evento, nao_evento)
         grafico_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento)
     except Exception as e:
         messagebox.showerror("Erro", str(e))
 
+# Criando o software
+def create_gui():
+    root = tk.Tk()
+    root.title("Análise KS")
 
-# Configuração da interface gráfica
-root = tk.Tk()
-root.title("Análise KS")
+    tk.Label(root, text="Separador do CSV (por exemplo, ';'):").grid(row=0, column=0)
+    sep_entry = tk.Entry(root)
+    sep_entry.grid(row=0, column=1)
 
-tk.Label(root, text="Separador do CSV (por exemplo, ';'):").grid(row=0, column=0)
-sep_entry = tk.Entry(root)
-sep_entry.grid(row=0, column=1)
+    tk.Label(root, text="Decimal, se houver (o default é '.'):").grid(row=1, column=0)
+    decimal_entry = tk.Entry(root)
+    decimal_entry.grid(row=1, column=1)
 
-tk.Label(root, text="Decimal, se houver (o default é '.'):").grid(row=1, column=0)
-decimal_entry = tk.Entry(root)
-decimal_entry.grid(row=1, column=1)
+    tk.Label(root, text="Coluna de Evento:").grid(row=2, column=0)
+    coluna_evento_entry = tk.Entry(root)
+    coluna_evento_entry.grid(row=2, column=1)
 
-tk.Label(root, text="Coluna de Evento:").grid(row=2, column=0)
-coluna_evento_entry = tk.Entry(root)
-coluna_evento_entry.grid(row=2, column=1)
+    tk.Label(root, text="Coluna de Probabilidade:").grid(row=3, column=0)
+    coluna_probabilidade_entry = tk.Entry(root)
+    coluna_probabilidade_entry.grid(row=3, column=1)
 
-tk.Label(root, text="Coluna de Probabilidade:").grid(row=3, column=0)
-coluna_probabilidade_entry = tk.Entry(root)
-coluna_probabilidade_entry.grid(row=3, column=1)
+    tk.Label(root, text="Valor do Evento:").grid(row=4, column=0)
+    evento_entry = tk.Entry(root)
+    evento_entry.grid(row=4, column=1)
 
-tk.Label(root, text="Valor do Evento:").grid(row=4, column=0)
-evento_entry = tk.Entry(root)
-evento_entry.grid(row=4, column=1)
+    tk.Label(root, text="Valor do Não Evento:").grid(row=5, column=0)
+    nao_evento_entry = tk.Entry(root)
+    nao_evento_entry.grid(row=5, column=1)
 
-tk.Label(root, text="Valor do Não Evento:").grid(row=5, column=0)
-nao_evento_entry = tk.Entry(root)
-nao_evento_entry.grid(row=5, column=1)
+    tk.Button(root, text="Selecionar CSV e Gerar Gráfico", command=lambda: processar_csv(
+        sep_entry, decimal_entry, coluna_evento_entry, coluna_probabilidade_entry, evento_entry, nao_evento_entry
+    )).grid(row=6, columnspan=2)
 
-tk.Button(root, text="Selecionar CSV e Gerar Gráfico", command=processar_csv).grid(row=6, columnspan=2)
+    root.mainloop()
 
-root.mainloop()
+def main():
+    create_gui()
+
+if __name__ == "__main__":
+    main()
