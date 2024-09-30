@@ -75,4 +75,6 @@ O dashboard ficou da seguinte forma:
 
 ![dash](https://github.com/user-attachments/assets/c94fb622-ef9d-4aa4-b1d3-1b2ae9cb2a6c)
 
+O painel pode ser acessado pelo seguinte link:
 
+https://dashboardprecos-boti.streamlit.app/
