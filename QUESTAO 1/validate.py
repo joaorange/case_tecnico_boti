@@ -11,7 +11,7 @@ def merge_dataframes(df_local, df_gcp):
     df_merge = df_local.merge(df_gcp, on='ID', how='outer', indicator=True)
     return df_merge
 
-# Verificando se o dataframe possue linhas duplicadas
+# Verificando se o dataframe possui linhas duplicadas
 def analyze_duplicates(df):
     return df.duplicated().value_counts()
 
@@ -29,7 +29,6 @@ def generate_report(df_merge):
 def compare_dataframes(df_local, df_gcp):
     df_merge = merge_dataframes(df_local, df_gcp)
 
-
     report = generate_report(df_merge)
 
     df_both = df_merge[df_merge['_merge'] == 'both']
@@ -37,24 +36,24 @@ def compare_dataframes(df_local, df_gcp):
     df_both.columns = df_both.columns.str.replace('_x', '_LOCAL').str.replace('_y', '_GCP')
 
     # Comparando os valores de cada coluna
-    resultados = {}
-    for coluna in df_local.columns:
-        if coluna != 'ID':
-            diferentes = df_both[coluna + '_LOCAL'] != df_both[coluna + '_GCP']
-            quantidade_diferencas = diferentes.sum()
+    results = {}
+    for column in df_local.columns:  
+        if column != 'ID':
+            different = df_both[column + '_LOCAL'] != df_both[column + '_GCP'] 
+            quantity_differences = different.sum() 
 
-            if quantidade_diferencas > 0:
-                exemplos_diferencas = df_both[diferentes][
-                    ['ID', coluna + '_LOCAL', coluna + '_GCP']].head()
-                resultados[coluna] = {
-                    'quantidade': quantidade_diferencas,
-                    'exemplos': exemplos_diferencas
+            if quantity_differences > 0:
+                examples_differences = df_both[different][
+                    ['ID', column + '_LOCAL', column + '_GCP']].head()
+                results[column] = {
+                    'quantidade': quantity_differences,
+                    'exemplos': examples_differences
                 }
 
-    return report, resultados
+    return report, results
 
 # Salvando todas as informações em um TXT
-def save_report_to_txt(report, resultados, gcp_duplicates, local_duplicates):
+def save_report_to_txt(report, results, gcp_duplicates, local_duplicates):
     with open("report.txt", "w") as f:
         f.write("### Report ###\n")
         f.write("Merge Counts:\n")
@@ -68,12 +67,11 @@ def save_report_to_txt(report, resultados, gcp_duplicates, local_duplicates):
         f.write(str(local_duplicates) + "\n")
 
         f.write("\n### Diferenças ###\n")
-        for coluna, info in resultados.items():
-            f.write(f"Coluna: {coluna}, Quantidade de Diferenças: {info['quantidade']}\n")
+        for column, info in results.items(): 
+            f.write(f"Coluna: {column}, Quantidade de Diferenças: {info['quantidade']}\n")
             f.write("Exemplos de Diferenças:\n")
             f.write(info['exemplos'].to_string(index=False) + "\n")
             f.write("\n")
-
 
 def main():
     gcp_path = 'C:/Users/JoaoV/OneDrive/Área de Trabalho/case_2024/bases/application_record_gcp.csv'
@@ -81,15 +79,14 @@ def main():
 
     df_gcp, df_local = load_data(gcp_path, local_path)
 
-    report, resultados = compare_dataframes(df_local, df_gcp)
+    report, results = compare_dataframes(df_local, df_gcp)
 
     # Analisando duplicados
     gcp_duplicates = analyze_duplicates(df_gcp)
     local_duplicates = analyze_duplicates(df_local)
 
     # Salvando o relatório em um txt
-    save_report_to_txt(report, resultados, gcp_duplicates, local_duplicates)
-
+    save_report_to_txt(report, results, gcp_duplicates, local_duplicates)
 
 if __name__ == "__main__":
     main()
