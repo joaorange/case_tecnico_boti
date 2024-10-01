@@ -66,7 +66,7 @@ def process_csv(sep_entry, decimal_entry, coluna_evento_entry, coluna_probabilid
     try:
         df = read_csv(caminho_csv, sep, decimal)
         df = event_nonevent(df, coluna_evento, evento, nao_evento)
-        grafico_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento)
+        graph_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento)
     except Exception as e:
         messagebox.showerror("Erro", str(e))
 
@@ -99,7 +99,7 @@ def create_gui():
     nao_evento_entry = tk.Entry(root)
     nao_evento_entry.grid(row=5, column=1)
 
-    tk.Button(root, text="Selecionar CSV e Gerar Gráfico", command=lambda: processar_csv(
+    tk.Button(root, text="Selecionar CSV e Gerar Gráfico", command=lambda: process_csv(
         sep_entry, decimal_entry, coluna_evento_entry, coluna_probabilidade_entry, evento_entry, nao_evento_entry
     )).grid(row=6, columnspan=2)
 
