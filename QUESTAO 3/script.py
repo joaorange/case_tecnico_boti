@@ -15,7 +15,7 @@ def event_nonevent(df, coluna_evento, evento, nao_evento):
     return df
 
 # Gráfico para visualização da curva de KS
-def grafico_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento):
+def graph_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento):
     score_0 = df[df[coluna_evento] == 0][coluna_probabilidade]
     score_1 = df[df[coluna_evento] == 1][coluna_probabilidade]
 
@@ -51,7 +51,7 @@ def grafico_ks(df, coluna_evento, coluna_probabilidade, evento, nao_evento):
     plt.show()
 
 # Processando o CSV com base nas entradas do tkinter
-def processar_csv(sep_entry, decimal_entry, coluna_evento_entry, coluna_probabilidade_entry, evento_entry, nao_evento_entry):
+def process_csv(sep_entry, decimal_entry, coluna_evento_entry, coluna_probabilidade_entry, evento_entry, nao_evento_entry):
     caminho_csv = filedialog.askopenfilename(title="Selecione o arquivo CSV", filetypes=[("CSV files", "*.csv")])
     if not caminho_csv:
         return
