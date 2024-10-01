@@ -75,6 +75,9 @@ Após isso, selecionamos o CSV e o gráfico é gerado.
 
 ![figure ks](https://github.com/user-attachments/assets/31cb301e-a90f-4877-ab61-91c9e13a195f)
 
+O indicador do KS, basicamente, mede o quão bem o modelo distingue entre duas categorias, o que para o mercado de crédito, geralmente, é se o cliente é bom ou mau. 
+O modelo indicado deu um valor de 0.57 de KS, o que representa uma eficácia excelente para um modelo de crédito, que tem como norte ter 0.30 ou quiçá 0.40 na maioria dos casos.
+
 ## Questão 4
 
 Para responder a quarta questão, criei um programa que baixa diretamente do site do governo o CSV correspondente de 2023 e 2024. 
