@@ -15,7 +15,7 @@ Para todos os programas em python, deixei um requirements.txt no repositório pa
 
 Para comparar as bases, subi os CSV no Dbeaver (onde todas as colunas foram como texto, por meio do "script_create", a fim de não perder informações com transformações numéricas). 
 
-Dividi a query (("script_validate") em duas partes.
+Dividi a query ("script_validate") em duas partes.
 Na primeira, fiz uma validação se havia duplicados em cada tabela, e se fazendo um merge entre ambas pelo ID retornaria os mesmos valores. O GCP, aparentemente, não trouxe alguns registros e duplicou outros. 
 
 ![img 1 sql](https://github.com/user-attachments/assets/03d9c533-4c8b-4075-940d-289b6bd15d21)
