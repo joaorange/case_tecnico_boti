@@ -83,11 +83,11 @@ def main():
 
     report, resultados = compare_dataframes(df_local, df_gcp)
 
-    # Analyzing duplicates
+    # Analisando duplicados
     gcp_duplicates = analyze_duplicates(df_gcp)
     local_duplicates = analyze_duplicates(df_local)
 
-    # Save the final report to a TXT file
+    # Salvando o relatório em um txt
     save_report_to_txt(report, resultados, gcp_duplicates, local_duplicates)
 
 
